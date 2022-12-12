@@ -40,7 +40,7 @@ public class VegetableController {
 		return mv;
 	}
 
-	// tìm kiếm sản phẩm
+	// tìm kiếm sản phẩm theo tên và loại
 	@GetMapping("/home/search")
 	public ModelAndView search(@RequestParam(required = false) String catagoryID,
 			@RequestParam(required = false) String keyword) {

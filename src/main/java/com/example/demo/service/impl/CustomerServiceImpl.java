@@ -19,6 +19,11 @@ public class CustomerServiceImpl implements CustomerService{
 		this.customerMapper=customerMapper;
 	}
 	
+	@Override
+	public boolean checkUsername(String username) {
+		int check = customerRepository.checkUsername(username);
+		return check == 0;
+	}
 	
 	@Override
 	public void createCustomer(CustomerDTO dto) {
@@ -32,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public boolean checkLogin(CustomerDTO dto) {
 		int check=customerRepository.checkLogin(dto.getUsername(), dto.getPassword());
-		
+		System.out.println("checklogin: "+check+"-"+(check>0));
 		return check>0;
 	}
 
@@ -45,11 +50,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 
-	@Override
-	public boolean checkUsername(String username) {
-		int check = customerRepository.checkUsername(username);
-		return check == 0;
-	}
+	
 
 
 	

@@ -141,9 +141,8 @@
 					if(rs == 1){
 						alert("Đăng nhập thành công");
 						window.location.href="/home";
-					}else {
-						
-						aler("Đăng nhập thất bại");
+					}else{
+						alert("Đăng nhập thất bại");
 					}
 				},
 				error : function(e) {

@@ -7,7 +7,6 @@ import java.util.List;
 @Table(name = "customers")
 public class CustomerEntity {
 	@Id
-	// @GeneratedValue
 	@Column(name = "CustomerID")
 	private Long CustomerID;
 

@@ -28,10 +28,9 @@ public class CustomerController {
 		this.customerService = customerService;
 	}
 
-	//Trang đăng ký
+	//Mở Trang đăng ký
 	@GetMapping("/user/register")
 	public ModelAndView registerPage() {
-
 		ModelAndView mv = new ModelAndView("register");
 		return mv;
 	}
@@ -45,7 +44,7 @@ public class CustomerController {
 		String repeatpassword = dto.getRepeatPassword();
 		String address = dto.getAddress();
 		String city = dto.getCity();
-		//0:Password and Repeat Password must be same!!!
+		//0:Password and Repeat Password phải giống nhau!!!
 		//1:Không được để trống
 		//2:Tên đăng nhập đã tồn tại
 		//3:Đăng ký thành công
@@ -59,24 +58,23 @@ public class CustomerController {
 		if(!customerService.checkUsername(username)) {
 			return 2;
 		}
-
 		customerService.createCustomer(dto);
 		return 3;
 
 	}
 
-	// Trang đăng nhập
+	//Mở Trang đăng nhập
 	@GetMapping("/user/login")
 	public ModelAndView loginPage() {
 		ModelAndView mv = new ModelAndView("login");
 		return mv;
 	}
-
 	// Tiến hành đăng nhập
 	@PostMapping(value = "/user/login", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public int login(@RequestBody CustomerDTO dto, HttpSession session) {
 		boolean checkLogin = customerService.checkLogin(dto);
 		int result = 0;
+		//0: thất bại; 1:thành công
 		if (checkLogin) {
 			CustomerDTO account = customerService.getAccount(dto);
 			System.out.println(account.getCustomerID());
@@ -92,7 +90,6 @@ public class CustomerController {
 		}
 		return result;
 	}
-
 	// Đăng xuất
 	@GetMapping("/user/logout")
 	public void logout(HttpSession session, HttpServletResponse httpResponse) {
